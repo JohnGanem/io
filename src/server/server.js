@@ -1,5 +1,5 @@
 /* jslint bitwise: true, node: true */
-'use strict'; 
+'use strict';
 
 var express = require('express');
 var app = express();
@@ -44,7 +44,7 @@ if (s.host !== "DEFAULT") {
     });
 
     //log sql errors
-    pool.connect(function (err) { 
+    pool.connect(function (err) {
         if (err) {
             console.log(err);
         }
@@ -103,10 +103,12 @@ function movePlayer(player) {
     var deltaX = speed * Math.cos(deg);
     var deltaY = speed * Math.sin(deg);
 
-    if (dist < (50 + radius)) {
-        deltaY *= dist / (50 + radius);
-        deltaX *= dist / (50 + radius);
+    // Quand l'utilisateur appuie proche du joueur, il ralentit
+    if (dist < (c.minimumDistTouchSlow + radius)) {
+        deltaY *= dist / (c.minimumDistTouchSlow + radius);
+        deltaX *= dist / (c.minimumDistTouchSlow + radius);
     }
+
     if (!isNaN(deltaY)) {
         player.y += deltaY;
     }
@@ -362,7 +364,7 @@ function tickPlayer(currentPlayer) {
     }
 
     if (typeof (currentPlayer.speed) == "undefined") {
-        currentPlayer.speed = c.playerSpeed;
+        currentPlayer.speed = c.defaultPlayerSpeed;
     }
     playerCircle.r = currentPlayer.radius;
 }

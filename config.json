@@ -13,6 +13,7 @@
             "to": 10
         }
     },
+    "minimumDistTouchSlow" : 25,
     "defaultPlayerSpeed": 8,
     "invincibleMode": false,
     "gameWidth": 2000,
