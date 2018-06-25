@@ -13,7 +13,7 @@
             "to": 10
         }
     },
-    "playerSpeed": 8,
+    "defaultPlayerSpeed": 8,
     "invincibleMode": false,
     "gameWidth": 2000,
     "gameHeight": 2000,

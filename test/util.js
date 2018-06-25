@@ -37,7 +37,7 @@ describe('util.js', function () {
 
     it('should allow empty player nicknames', function () {
       var bool = util.validNick('');
-      //expect(bool).to.be.true;
+      expect(bool).to.be.true;
     });
 
     it('should allow ascii character nicknames', function () {

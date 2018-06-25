@@ -1,5 +1,5 @@
 /* jslint bitwise: true, node: true */
-'use strict';
+'use strict'; 
 
 var express = require('express');
 var app = express();
@@ -44,7 +44,7 @@ if (s.host !== "DEFAULT") {
     });
 
     //log sql errors
-    pool.connect(function (err) {
+    pool.connect(function (err) { 
         if (err) {
             console.log(err);
         }
