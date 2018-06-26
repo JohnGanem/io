@@ -40,6 +40,7 @@ describe('player.js', function () {
             expect(player.setName('hank')).to.be.true;
             expect(player.setName('marie_schrader12')).to.be.true;
             expect(player.setName('Йèæü')).to.be.false;
+            expect(player.setName('Walter"White')).to.be.false;
             expect(player.setName('Walter White')).to.be.false;
             expect(player.getName()).to.be.equal('marie_schrader12');
         });
@@ -65,12 +66,23 @@ describe('player.js', function () {
             expect(player.getPosition()).to.deep.equal({x: -1, y: -1});
         });
 
-        it('should slow down if distance is slow enough', function () {
+        it('should slow down if distance is short enough', function () {
             var player = new Player(1, 1);
             player.setSpeed(config.FPS);
             player.setTarget({x: (config.minimumDistTouchSlow - 1), y: 0});
             player.move();
             expect(player.getPosition()).to.not.deep.equal({x: 1, y: 0});
+        });
+    });
+    
+    describe('#toJSON', function () {
+        it('should convert to JSON format', function () {
+            var player = new Player(1, 1);
+            player.setSpeed(config.FPS);
+            player.setTarget({x: 50, y: 0});
+            var json = player.toJSON();
+            expect(json.speed).to.be.equal(config.FPS);
+            expect(json.target.x).to.be.equal(50);
         });
     });
 });

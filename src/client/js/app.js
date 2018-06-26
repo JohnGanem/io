@@ -380,6 +380,7 @@ function drawPlayers() {
             xstore[i] = x;
             ystore[i] = y;
         }
+
         /*if (wiggle >= player.radius/ 3) inc = -1;
          *if (wiggle <= player.radius / -3) inc = +1;
          *wiggle += inc;

@@ -2,6 +2,7 @@
     "host": "0.0.0.0",
     "port": 3000,
     "defaultPlayerSize": 20,
+    "defaultPlayerImage": "",
     "fishs": {
         "strokeWidth": 20,
         "defaultSize": {
@@ -13,7 +14,12 @@
             "to": 10
         }
     },
-    "minimumDistTouchSlow" : 25,
+    "playerBorder": 6,
+    "playerTextColor": "#FFFFFF",
+    "playerTextBorder": "#000000",
+    "playerTextBorderSize": 3,
+    "playerDefaultSize": 30,
+    "minimumDistTouchSlow": 25,
     "defaultPlayerSpeed": 8,
     "invincibleMode": false,
     "gameWidth": 2000,
