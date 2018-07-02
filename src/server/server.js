@@ -539,8 +539,10 @@ function sendUpdates() {
                         if (f.id !== u.id) {
                             return {
                                 id: f.id,
-                                x: f.x,
-                                y: f.y,
+                                position: {
+                                    x: f.x,
+                                    y: f.y
+                                },
                                 radius: f.radius,
                                 size: Math.round(f.size),
                                 hue: f.hue,
@@ -550,8 +552,10 @@ function sendUpdates() {
                         } else {
                             //console.log("Nombre: " + f.name + " est un utilisateur");
                             return {
-                                x: f.x,
-                                y: f.y,
+                                position: {
+                                    x: f.x,
+                                    y: f.y
+                                },
                                 radius: f.radius,
                                 size: Math.round(f.size),
                                 hue: f.hue,
@@ -597,8 +601,10 @@ function sendUpdates() {
                             f.y - f.radius < u.y + u.screenHeight / 2 + 20) {
                         return {
                             id: f.id,
-                            x: f.x,
-                            y: f.y,
+                            position: {
+                                x: f.x,
+                                y: f.y
+                            },
                             radius: f.radius,
                             size: Math.round(f.size),
                             hue: f.hue,
@@ -642,8 +648,10 @@ function sendUpdates() {
                         if (f.id !== u.id) {
                             return {
                                 id: f.id,
-                                x: f.x,
-                                y: f.y,
+                                position: {
+                                    x: f.x,
+                                    y: f.y
+                                },
                                 radius: f.radius,
                                 size: Math.round(f.size),
                                 hue: f.hue,
@@ -653,8 +661,10 @@ function sendUpdates() {
                         } else {
                             //console.log("Nombre: " + f.name + " est un utilisateur");
                             return {
-                                x: f.x,
-                                y: f.y,
+                                position: {
+                                    x: f.x,
+                                    y: f.y
+                                },
                                 radius: f.radius,
                                 size: Math.round(f.size),
                                 hue: f.hue,

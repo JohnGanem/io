@@ -2,7 +2,7 @@ var io = require('socket.io-client');
 //var ChatClient = require('./chat-client');
 var Canvas = require('./canvas');
 var global = require('./global');
-
+var Player = require('./draw_model/player');
 var playerNameInput = document.getElementById('playerNameInput');
 var restart = document.getElementById('restart');
 var socket;
@@ -341,86 +341,12 @@ function drawFish(fish) {
 }
 
 function drawPlayers() {
-    var start = {
+    var centre = {
         x: player.x - (global.screenWidth / 2),
         y: player.y - (global.screenHeight / 2)
     };
     for (var z = 0; z < players.length; z++) {
-        var userCurrent = players[z];
-        var x = 0;
-        var y = 0;
-        var points = 30 + ~~(userCurrent.size / 5);
-        var increase = Math.PI * 2 / points;
-        graph.strokeStyle = 'hsl(' + userCurrent.hue + ', 100%, 45%)';
-        graph.fillStyle = 'hsl(' + userCurrent.hue + ', 100%, 50%)';
-        graph.lineWidth = playerConfig.border;
-        var xstore = [];
-        var ystore = [];
-        global.spin += 0.0;
-        var circle = {
-            x: userCurrent.x - start.x,
-            y: userCurrent.y - start.y
-        };
-
-        for (var i = 0; i < points; i++) {
-            x = userCurrent.radius * Math.cos(global.spin) + circle.x;
-            y = userCurrent.radius * Math.sin(global.spin) + circle.y;
-            if (typeof (userCurrent.id) == "undefined") {
-                x = valueInRange(-userCurrent.x + global.screenWidth / 2,
-                        global.gameWidth - userCurrent.x + global.screenWidth / 2, x);
-                y = valueInRange(-userCurrent.y + global.screenHeight / 2,
-                        global.gameHeight - userCurrent.y + global.screenHeight / 2, y);
-            } else {
-                x = valueInRange(-userCurrent.x - player.x + global.screenWidth / 2 + (userCurrent.radius / 3),
-                        global.gameWidth - userCurrent.x + global.gameWidth - player.x + global.screenWidth / 2 - (userCurrent.radius / 3), x);
-                y = valueInRange(-userCurrent.y - player.y + global.screenHeight / 2 + (userCurrent.radius / 3),
-                        global.gameHeight - userCurrent.y + global.gameHeight - player.y + global.screenHeight / 2 - (userCurrent.radius / 3), y);
-            }
-            global.spin += increase;
-            xstore[i] = x;
-            ystore[i] = y;
-        }
-
-        /*if (wiggle >= player.radius/ 3) inc = -1;
-         *if (wiggle <= player.radius / -3) inc = +1;
-         *wiggle += inc;
-         */
-        for (i = 0; i < points; ++i) {
-            if (i === 0) {
-                graph.beginPath();
-                graph.moveTo(xstore[i], ystore[i]);
-            } else if (i > 0 && i < points - 1) {
-                graph.lineTo(xstore[i], ystore[i]);
-            } else {
-                graph.lineTo(xstore[i], ystore[i]);
-                graph.lineTo(xstore[0], ystore[0]);
-            }
-
-        }
-        graph.lineJoin = 'round';
-        graph.lineCap = 'round';
-        graph.fill();
-        graph.stroke();
-        graph.drawImage(document.getElementById(userCurrent.image),
-                circle.x - userCurrent.radius,
-                circle.y - userCurrent.radius,
-                userCurrent.size, userCurrent.size);
-        var nameCell = "";
-        if (typeof (userCurrent.id) == "undefined")
-            nameCell = player.name;
-        else
-            nameCell = userCurrent.name;
-        var fontSize = Math.max(userCurrent.radius / 3, 12);
-        graph.lineWidth = playerConfig.textBorderSize;
-        graph.fillStyle = playerConfig.textColor;
-        graph.strokeStyle = playerConfig.textBorder;
-        graph.miterLimit = 1;
-        graph.lineJoin = 'round';
-        graph.textAlign = 'center';
-        graph.textBaseline = 'middle';
-        graph.font = 'bold ' + fontSize + 'px sans-serif';
-        graph.strokeText(nameCell, circle.x, circle.y + userCurrent.size);
-        graph.fillText(nameCell, circle.x, circle.y + userCurrent.size);
+        Player.drawFromJSON(JSON.stringify(players[z]), graph, centre);
     }
 }
 

@@ -1,7 +1,7 @@
 /*jshint expr:true */
 
 var expect = require('chai').expect,
-        Player = require('../src/server/lib/player'),
+        Player = require('../src/server/model/player'),
         config = require('../config.json');
 
 
@@ -75,12 +75,12 @@ describe('player.js', function () {
         });
     });
     
-    describe('#toJSON', function () {
+    describe('#allToJSON', function () {
         it('should convert to JSON format', function () {
             var player = new Player(1, 1);
             player.setSpeed(config.FPS);
             player.setTarget({x: 50, y: 0});
-            var json = player.toJSON();
+            var json = player.allToJSON();
             expect(json.speed).to.be.equal(config.FPS);
             expect(json.target.x).to.be.equal(50);
         });
