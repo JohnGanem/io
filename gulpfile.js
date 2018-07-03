@@ -9,7 +9,7 @@ var webpack = require('webpack-stream');
 var fs = require('fs');
 
 
-gulp.task('build', ['build-client', 'build-server', 'test']);
+gulp.task('build', ['build-client', 'build-server', 'build-model', 'test']);
 
 gulp.task('test', ['lint'], function () {
     gulp.src(['test/**/*.js'])
@@ -49,9 +49,16 @@ gulp.task('build-server', ['lint'], function () {
             .pipe(gulp.dest('bin/server/'));
 });
 
+gulp.task('build-model', ['lint'], function () {
+    return gulp.src(['src/model/**/*.*', 'src/model/**/*.js'])
+            .pipe(babel())
+            .pipe(gulp.dest('bin/model/'));
+});
+
 gulp.task('watch', ['build'], function () {
     gulp.watch(['src/client/**/*.*'], ['build-client', 'move-client']);
     gulp.watch(['src/server/*.*', 'src/server/**/*.js'], ['build-server']);
+    gulp.watch(['src/model/*.*', 'src/model/**/*.js'], ['build-model']);
     gulp.start('run-only');
 });
 

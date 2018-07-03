@@ -1,7 +1,7 @@
 /*jshint expr:true */
 
 var expect = require('chai').expect,
-        Player = require('../src/server/model/player'),
+        Player = require('../src/model/player').Player,
         config = require('../config.json');
 
 

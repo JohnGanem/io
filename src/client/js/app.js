@@ -1,8 +1,7 @@
 var io = require('socket.io-client');
-//var ChatClient = require('./chat-client');
 var Canvas = require('./canvas');
 var global = require('./global');
-var Player = require('./draw_model/player');
+var Player = require('../../model/player').Draw;
 var playerNameInput = document.getElementById('playerNameInput');
 var restart = document.getElementById('restart');
 var socket;
@@ -346,7 +345,7 @@ function drawPlayers() {
         y: player.y - (global.screenHeight / 2)
     };
     for (var z = 0; z < players.length; z++) {
-        Player.drawFromJSON(JSON.stringify(players[z]), graph, centre);
+        Player.drawFromJSON(JSON.stringify(players[z]), graph, global, centre);
     }
 }
 

@@ -6,6 +6,13 @@ module.exports = {
         filename: "app.js"
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.json$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'json-loader'
+            },
+        ],
         loaders: [
             {
                 test: /\.jsx?$/,
